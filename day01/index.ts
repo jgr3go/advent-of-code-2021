@@ -1,20 +1,20 @@
-import * as path from 'path';
-import * as fs from 'fs';
+import { AOCInput } from '../interfaces';
 
-let rows = fs.readFileSync(path.join(__dirname, process.argv[2] ? 'sample.txt' : 'data.txt')).toString().split('\r\n');
-let data = rows.map(x => parseInt(x));
+const transform = (rows: AOCInput) => rows.map(x => parseInt(x));
 
-const part1 = () => {
+
+export const part1 = (rows: AOCInput) => {
+  let data = transform(rows);
   let count = data.reduce((prev: [number, number], cur) => {
     if (prev[0] === null) return [cur, 0];
     return prev[0] < cur ? [cur, ++prev[1]] : [cur, prev[1]];
   }, [null, 0]);
 
-  console.log("round 1", count[1]);
+  return count[1];
 }
 
-
-const part2 = () => {
+export const part2 = (rows: AOCInput) => {
+  let data = transform(rows);
   let prev = data[0] + data[1] + data[2];
   let count = 0;
   for (let ii = 3; ii < data.length; ii++) {
@@ -23,9 +23,5 @@ const part2 = () => {
     prev = cur;
   }
 
-  console.log("round 2", count);
-
-};
-
-part1();
-part2();
+  return count;
+}

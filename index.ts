@@ -40,7 +40,7 @@ const getArgs = () => {
     part12 = 'part1';
   }
 
-  let rows = fs.readFileSync(path.join(filepath, sample ? 'sample.txt' : 'data.txt')).toString().split('\r\n');
+  let rows = fs.readFileSync(path.join(filepath, sample ? 'sample.txt' : 'data.txt')).toString().split('\n');
 
   return { func, part: part12, rows };
 }

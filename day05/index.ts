@@ -36,6 +36,25 @@ export let part1 = (rows: AOCInput) => {
   return matrix.count();
 }
 
+export let part2 = (rows: AOCInput) => {
+  let data = transform(rows);
+  let matrix = new SparseMatrix();
+  for (let d of data) {
+    let x = d.x1, y = d.y1;
+    matrix.add(x, y);
+    while (true) {
+      if (x < d.x2) x++;
+      else if (x > d.x2) x--;
+      if (y < d.y2) y++;
+      else if (y > d.y2) y--;
+      matrix.add(x, y);
+      if (x == d.x2 && y == d.y2) break;
+    }
+  }
+
+  return matrix.count();
+}
+
 class SparseMatrix {
   data: number[][] = [];
 

@@ -6,6 +6,7 @@ let transform = (rows: AOCInput) => rows[0].split(',').map(x => parseInt(x));
 
 export let part1 = (rows: AOCInput) => {
   let data = transform(rows);
+  console.log({min: _.min(data), mean: _.mean(data), max: _.max(data)});
   return naivePart1(data);  
 }
 
